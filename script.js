@@ -4,15 +4,7 @@ const button = document.createElement('button');
 
 button.textContent = 'Choose box size';
 body.insertBefore(button, body.firstChild).className = 'button';
-button.addEventListener('click', () => {
-    let input = prompt('How many squares do you want on each side of the box?');
-    if (input > 100){
-        alert('Square is too big! Choose a smalller number!')
-    } else {
-        createGrid(input, input);
-        sketch();
-    }
-});
+
 
 function createGrid(rows, cols){
     let amount = rows * cols;
@@ -24,12 +16,21 @@ function createGrid(rows, cols){
     }
 }
 
-
 function sketch(){
     const box = document.querySelectorAll('.grid-box');
     const square = document.querySelector('.grid-box');
     box.forEach(square => square.addEventListener('mouseover', () =>{
         let att = square.getAttribute('style');
         square.setAttribute('style', `${att} background-color: black;`);
-    }));
+    }, {once: true})); //makes this so the div boxes do not have repeated attributes
 }
+
+button.addEventListener('click', () => {
+    let input = prompt('How many squares do you want on each side of the box?');
+    if (input > 100){
+        alert('Square is too big! Choose a smalller number!')
+    } else {
+        createGrid(input, input);
+        sketch();
+    }
+}, {once: true}); //allows the box to be created only once; if the sketch-box already exist, then user needs to press reset
