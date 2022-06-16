@@ -5,19 +5,20 @@
 }
 body {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
 .container {
-    width: 400px;
+    width: 960px;
     display: flex;
     flex-wrap: wrap;
 }
 .grid-box {
     border: 1px solid black;
-    height: 25px;
-    width: 25px;
+}
+#size {
 }
 .black {
     background-color: black;
